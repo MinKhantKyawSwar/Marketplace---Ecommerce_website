@@ -1,15 +1,20 @@
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
 
 exports.register = async (req, res, next) => {
   const errors = validationResult(req);
 
+  // if there is any errors
   if (!errors.isEmpty()) {
-    return res.status(400).json({ isSuccess: false, message: errors.array[0] });
+    return res
+      .status(400)
+      .json({ isSuccess: false, message: errors.array()[0].msg });
   }
 
+  //collecting input data of users from body
   const { name, email, password } = req.body;
 
   try {
@@ -23,18 +28,59 @@ exports.register = async (req, res, next) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
+    //creating new users
     await User.create({
       email,
       name,
       password: hashedPassword,
     });
 
+    //user successfully created
     return res
       .status(201)
-      .json({ isSuccess: true, message: "New User is successfully created." });
+      .json({ isSuccess: true, message: "Account is successfully created." });
   } catch (error) {
-    return res.status(400).json({ isSuccess: false, message: errors.message });
+    return res.status(409).json({ isSuccess: false, message: error.message });
   }
 };
 
-exports.login = (req, res, next) => {};
+exports.login = async (req, res, next) => {
+  const errors = validationResult(req);
+
+  // if there is any errors
+  if (!errors.isEmpty()) {
+    return res
+      .status(400)
+      .json({ isSuccess: false, message: errors.array()[0].msg });
+  }
+
+  //collecting input data of users from body
+  const { email, password } = req.body;
+  try {
+    // checking if email exist
+    const userDoc = await User.findOne({ email });
+    if (!userDoc) {
+      throw new Error("Email does not exist.");
+    }
+
+    // checking password
+    const isMatch = await bcrypt.compare(password, userDoc.password);
+    if (!isMatch) {
+      throw new Error("Wrong User Credentials.");
+    }
+
+    //create jwt token
+    const token = jwt.sign({ userId: userDoc._id }, process.env.JWT_KEY, {
+      expiresIn: "1d",
+    });
+
+    //login success
+    return res.status(200).json({
+      isSuccess: true,
+      message: "Login Successful.",
+      token,
+    });
+  } catch (error) {
+    return res.status(401).json({ isSuccess: false, message: error.message });
+  }
+};
