@@ -108,7 +108,7 @@ const AddProduct = () => {
               ]}
               hasFeedback
             >
-              <Select defaultValue={""} options={categoryOptions} />
+              <Select options={categoryOptions} />
             </Form.Item>
           </Col>
           <Col span={8}>
@@ -128,7 +128,7 @@ const AddProduct = () => {
           </Col>
         </Row>
         <Form.Item name="product_details" label="This product includes">
-          <Checkbox.Group options={checkBoxOptions} defaultValue={[""]} />
+          <Checkbox.Group options={checkBoxOptions} />
         </Form.Item>
         <Button className="font-medium text-lg text-center my-6 text-blue-600 flex items-center justify-center w-full">
           List Product

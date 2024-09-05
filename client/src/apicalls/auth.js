@@ -18,8 +18,18 @@ export const loginUser = async (payload) => {
     const response = await axiosInstance.post("/login", payload, {
       validateStatus: () => true,
     });
-    console.log(response);
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+};
 
+//check current user
+export const checkCurrentUser = async (payload) => {
+  try {
+    const response = await axiosInstance.get("/get-current-user", {
+      validateStatus: () => true,
+    });
     return response.data;
   } catch (error) {
     return error.message;

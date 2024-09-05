@@ -84,3 +84,19 @@ exports.login = async (req, res, next) => {
     return res.status(401).json({ isSuccess: false, message: error.message });
   }
 };
+
+exports.checkCurrentUser = async (req, res, next) => {
+  try {
+    const userDoc = await User.findById(req.userId).select("name email role");
+    if (!userDoc) {
+      throw new Error("Unauthorized User");
+    }
+    res.status(200).json({
+      isSuccess: true,
+      message: "User is authorized",
+      userDoc,
+    });
+  } catch (error) {
+    return res.status(401).json({ isSuccess: false, message: error.message });
+  }
+};

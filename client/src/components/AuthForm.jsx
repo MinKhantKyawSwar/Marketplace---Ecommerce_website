@@ -4,9 +4,12 @@ import { loginUser, registerUser } from "../apicalls/auth";
 import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUserId } from "../store/slices/userSlice";
 
 const AuthForm = ({ isLoginPage }) => {
   const [submitting, setSubmitting] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const HandleOnFinish = async (values) => {
@@ -14,10 +17,12 @@ const AuthForm = ({ isLoginPage }) => {
     if (isLoginPage) {
       try {
         const response = await loginUser(values);
-        console.log(response);
         if (response.isSuccess) {
           message.success(response.message);
           localStorage.setItem("token", response.token);
+          dispatch(setUserId(response.token));
+          console.log(localStorage.getItem("token"));
+
           navigate("/");
         } else {
           throw new Error(response.message);

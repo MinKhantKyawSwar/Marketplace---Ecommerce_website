@@ -3,6 +3,7 @@ const { body } = require("express-validator");
 const router = Router();
 
 const authController = require("../controllers/auth");
+const authMiddleware = require("../middlewares/Auth");
 
 //create new user
 //POST -> /register
@@ -38,6 +39,14 @@ router.post(
       .withMessage("Password should have at least 5 characters."),
   ],
   authController.login
+);
+
+//check user if he has already logined or not
+//GET /get-current-user
+router.get(
+  "/get-current-user",
+  authMiddleware,
+  authController.checkCurrentUser
 );
 
 module.exports = router;
