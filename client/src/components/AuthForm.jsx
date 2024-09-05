@@ -3,10 +3,11 @@ import { loginUser, registerUser } from "../apicalls/auth";
 
 import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AuthForm = ({ isLoginPage }) => {
   const [submitting, setSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const HandleOnFinish = async (values) => {
     setSubmitting(true);
@@ -17,6 +18,7 @@ const AuthForm = ({ isLoginPage }) => {
         if (response.isSuccess) {
           message.success(response.message);
           localStorage.setItem("token", response.token);
+          navigate("/");
         } else {
           throw new Error(response.message);
         }
@@ -28,6 +30,7 @@ const AuthForm = ({ isLoginPage }) => {
         const response = await registerUser(values);
         if (response.isSuccess) {
           message.success(response.message);
+          navigate("/login");
         } else {
           throw new Error(response.message);
         }
