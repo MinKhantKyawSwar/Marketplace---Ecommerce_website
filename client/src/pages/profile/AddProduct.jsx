@@ -1,9 +1,13 @@
 import React from "react";
-import { Button, Checkbox, Col, Form, Input, Row, Select } from "antd";
+import { Checkbox, Col, Form, Input, message, Row, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { SquaresPlusIcon } from "@heroicons/react/24/solid";
 
-const AddProduct = () => {
+import { sellProduct } from "../../apicalls/product";
+
+const AddProduct = ({ setActiveTabKey }) => {
+  const [form] = Form.useForm();
+
   const categoryOptions = [
     {
       value: "clothing_and_fashion",
@@ -50,10 +54,25 @@ const AddProduct = () => {
     },
   ];
 
+  const onFinishHandler = async (values) => {
+    try {
+      const response = await sellProduct(values);
+      if (response.isSuccess) {
+        form.resetFields();
+        message.success(response.message);
+        setActiveTabKey("1");
+      } else {
+        throw new Error(response.message);
+      }
+    } catch (error) {
+      message.error(error.message);
+    }
+  };
+
   return (
     <section>
-      <h1 className="text-2xl font-bold my-2">What do you want to sell?</h1>
-      <Form layout="vertical">
+      <h1 className="text-3xl font-semibold my-2">What do you want to sell?</h1>
+      <Form layout="vertical" onFinish={onFinishHandler} form={form}>
         <Form.Item
           name="product_name"
           label="Product Name"
@@ -130,13 +149,13 @@ const AddProduct = () => {
         <Form.Item name="product_details" label="This product includes">
           <Checkbox.Group options={checkBoxOptions} />
         </Form.Item>
-        <Button className="font-medium text-lg text-center my-6 text-blue-600 flex items-center justify-center w-full">
-          List Product
-          <SquaresPlusIcon
-            width={14}
-            className="text-blue-600 hover:text-blue-500"
-          />
-        </Button>
+        <button
+          type="submit"
+          className=" font-medium text-lg text-center py-1 rounded-md bg-blue-500 text-white flex items-center gap-2 justify-center w-full"
+        >
+          <SquaresPlusIcon width={30} />
+          Sell
+        </button>
       </Form>
     </section>
   );
