@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const Main = () => {
   return (
-    <section className="max-w-4xl mx-auto">
+    <section className="max-w-5xl mx-auto">
       <Nav />
       <Outlet />
     </section>

@@ -1,7 +1,112 @@
-import React from "react";
+import moment from "moment";
+import { message } from "antd";
+import { deleteProduct } from "../../apicalls/product";
+const Products = ({
+  products,
+  setActiveTabKey,
+  setEditMode,
+  setEditProductId,
+  getProducts,
+}) => {
+  const editHandler = (product_id) => {
+    setEditMode(true);
+    setActiveTabKey("2");
+    setEditProductId(product_id);
+  };
 
-const Products = () => {
-  return <div>Products</div>;
+  const deleteHandler = async (product_id) => {
+    try {
+      const response = await deleteProduct(product_id);
+      if (response.isSuccess) {
+        message.success(response.message);
+        getProducts();
+      } else {
+        throw new Error(response.message);
+      }
+    } catch (error) {
+      message.error(error.message);
+    }
+  };
+  return (
+    <section>
+      <h1 className="text-3xl font-semibold py-4 text-center">Products List</h1>
+      <div className="relative overflow-x-hidden shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 text-center">
+            <tr className="">
+              <th scope="col" className="px-6 py-3">
+                Product name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Category
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Sell Date
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Status
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody className="text-center">
+            {products.length > 0 ? (
+              <>
+                {products.map((product) => (
+                  <tr
+                    key={product._id}
+                    className="odd:bg-white even:bg-gray-50  border-b "
+                  >
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                    >
+                      {product.name}
+                    </th>
+                    <td className="px-6 py-4">{product.category}</td>
+                    <td className="px-6 py-4">
+                      {moment(product.createdAt).format("L")}
+                    </td>
+                    <td className="px-6 py-4">
+                      {product.status === "pending" ? (
+                        <span className="bg-orange-400 text-xs p-1 rounded-md text-white">
+                          {product.status}
+                        </span>
+                      ) : (
+                        <span className="bg-green-400 text-xs p-1 rounded-md text-white">
+                          {product.status}
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-6 py-4">
+                      <button
+                        type="button"
+                        className="font-medium text-blue-600 me-4 hover:underline"
+                        onClick={() => editHandler(product._id)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        type="button"
+                        className="font-medium text-red-500 hover:underline"
+                        onClick={() => deleteHandler(product._id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </>
+            ) : (
+              <p>No available products to show.</p>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
 };
 
 export default Products;
