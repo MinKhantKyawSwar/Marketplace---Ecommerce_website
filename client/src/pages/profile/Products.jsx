@@ -29,12 +29,12 @@ const Products = ({
   };
   return (
     <section>
-      <h1 className="text-3xl font-semibold py-4 text-center">Products List</h1>
-      <div className="relative overflow-x-hidden shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 text-center">
-            <tr className="">
-              <th scope="col" className="px-6 py-3">
+      <h1 className=" text-3xl font-semibold my-2">Products List</h1>
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left text-gray-500 ">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 text-center ">
+            <tr>
+              <th scope="col" className="px-6 py-3 text-left">
                 Product name
               </th>
               <th scope="col" className="px-6 py-3">
@@ -80,7 +80,14 @@ const Products = ({
                         </span>
                       )}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 text-center flex flex-row items-center">
+                      <button
+                        type="button"
+                        className="font-medium text-green-600 me-4 hover:underline"
+                        onClick={() => editHandler(product._id)}
+                      >
+                        Upload
+                      </button>
                       <button
                         type="button"
                         className="font-medium text-blue-600 me-4 hover:underline"

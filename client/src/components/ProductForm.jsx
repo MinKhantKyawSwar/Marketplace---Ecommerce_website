@@ -3,13 +3,9 @@ import { Checkbox, Col, Form, Input, message, Row, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { SquaresPlusIcon } from "@heroicons/react/24/solid";
 
-import {
-  sellProduct,
-  getOldProduct,
-  updateProduct,
-} from "../../apicalls/product";
+import { sellProduct, getOldProduct, updateProduct } from "../apicalls/product";
 
-const AddProduct = ({
+const ProductForm = ({
   setActiveTabKey,
   getProducts,
   editMode,
@@ -222,4 +218,4 @@ const AddProduct = ({
   );
 };
 
-export default AddProduct;
+export default ProductForm;

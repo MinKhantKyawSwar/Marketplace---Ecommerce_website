@@ -1,6 +1,6 @@
 import { Tabs, message } from "antd";
 import Products from "./Products";
-import AddProduct from "./AddProduct";
+import ManageProduct from "./ManageProduct";
 import General from "./General";
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../../apicalls/product";
@@ -45,7 +45,7 @@ const Index = () => {
       key: "2",
       label: "Manage Products",
       children: (
-        <AddProduct
+        <ManageProduct
           setActiveTabKey={setActiveTabKey}
           getProducts={getProducts}
           editMode={editMode}
