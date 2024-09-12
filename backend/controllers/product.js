@@ -1,5 +1,14 @@
 const { validationResult } = require("express-validator");
 const Product = require("../models/products");
+const {v2 : cloudinary} = require ("cloudinary");
+require("dotenv").config
+
+// Configuration
+cloudinary.config({ 
+    cloud_name: 'dcwg5gtc4', 
+    api_key: '892578732377972', 
+    api_secret: process.env.CLOUD_API // Click 'View API Keys' above to copy your API secret
+  });
 
 exports.addNewProduct = async (req, res) => {
   const errors = validationResult(req);
@@ -129,17 +138,44 @@ exports.deleteProduct = async (req, res) => {
   try {
     const productDoc = await Product.findOne({ _id: id });
 
+    if(!productDoc){
+      return res.status(404).json({
+        isSuccess: false,
+        message: "Product does not exist.",
+      });
+    }
+
+
     if (req.userId.toString() !== productDoc.seller.toString()) {
       throw new Error("Authorization Failed.");
     }
+
+    if (productDoc.images && Array.isArray(productDoc.images)){
+      const deletePromise = productDoc.images.map(img => {
+        const publicId = img.substring(img.lastIndexOf("/")+1,img.lastIndexOf("."))
+
+        return new Promise((resolve, reject) => {
+          cloudinary.uploader.destroy(publicId, (err, result)=> {
+            if (err){
+              reject(new Error('Destory failed.'))
+            }else{
+              resolve(result)
+            }
+          })
+        })
+      });
+      await Promise.all(deletePromise)
+    }
+
     await Product.findByIdAndDelete(id);
+
     return res.status(202).json({
       isSuccess: true,
       message: "Product Destroyed",
       productDoc,
     });
   } catch (err) {
-    return res.status(4222).json({
+    return res.status(422).json({
       isSuccess: false,
       message: err.message,
     });
@@ -147,7 +183,37 @@ exports.deleteProduct = async (req, res) => {
 };
 
 //uploadImage
-exports.uploadProductImage = (req, res) => {
-  console.log(req.files);
-  res.json(req.files);
+exports.uploadProductImage = async (req, res) => {
+  const productImages = req.files;
+  const productId = req.body.product_id;
+  let secureUrlArray = [];
+
+  try {
+    productImages.forEach((img) => {
+      cloudinary.uploader.upload(img.path, async (err, result) => {
+        if (!err) {
+          const url = result.secure_url;
+          secureUrlArray.push(url);
+
+          if (productImages.length === secureUrlArray.length) {
+            await Product.findByIdAndUpdate(productId, {
+              $push: { images: secureUrlArray },
+            });
+            return res.status(200).json({
+              isSuccess: true,
+              message: "Product images saved.",
+              secureUrlArray,
+            });
+          }
+        } else {
+          throw new Error("Cloud upload Failed.");
+        }
+      });
+    });
+  } catch (err) {
+    return res.status(404).json({
+      isSuccess: false,
+      message: err.message,
+    });
+  }
 };

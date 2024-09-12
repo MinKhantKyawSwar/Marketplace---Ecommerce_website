@@ -3,7 +3,7 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import { uploadImage } from "../apicalls/product";
 import { message } from "antd";
 
-const Upload = () => {
+const Upload = ({editProductId,setActiveTabKey}) => {
   const [previewImages, setPreviewImages] = useState([]);
   const [images, setImages] = useState([]);
 
@@ -19,7 +19,7 @@ const Upload = () => {
   };
 
   const deleteHandler = (img) => {
-    setPreviewImages(previewImages.filter((element) => element !== img));
+    setPreviewImages(prevImg => prevImg.filter(e => e!== img));
     URL.revokeObjectURL(img);
   };
 
@@ -30,10 +30,13 @@ const Upload = () => {
     for (let i = 0; i < images.length; i++) {
       formData.append("product_images", images[i]);
     }
+      formData.append("product_id", editProductId);
+
     try {
       const response = await uploadImage(formData);
       if (response.isSuccess) {
         message.success(response.message);
+        setActiveTabKey("1")
       } else {
         throw new Error(response.message);
       }
