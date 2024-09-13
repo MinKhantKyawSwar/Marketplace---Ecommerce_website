@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import { XMarkIcon, EllipsisHorizontalIcon } from "@heroicons/react/24/solid";
 import { deleteSavedImages, uploadImage } from "../apicalls/product";
 import { message } from "antd";
 import { getSavedImages } from "../apicalls/product";
+
+import {useDispatch, useSelector }from "react-redux"
+import { setLoader} from "../store/slices/loaderSlice";
+
 
 const Upload = ({editProductId,setActiveTabKey}) => {
   const [previewImages, setPreviewImages] = useState([]);
   const [images, setImages] = useState([]);
   const [savedImages, setSavedImages] = useState([])
+  const [selectedImagesCount, setSelectedImagesCount] = useState(0);
+
+  const { isProcessing } = useSelector((state) => state.reducer.loader);
+
+  const dispatch = useDispatch()
 
   const getImages = async(product_id)=>{
     try {
@@ -29,6 +38,10 @@ const Upload = ({editProductId,setActiveTabKey}) => {
   const onChangeHandler = (event) => {
     const seletedImages = event.target.files;
     const seletedImagesArray = Array.from(seletedImages);
+
+    //update selected images count
+    setSelectedImagesCount(prev => prev + seletedImagesArray.length)
+
     setImages((prev) => [...prev, ...seletedImagesArray]);
 
     const previewImagesArray = seletedImagesArray.map((img) => {
@@ -38,14 +51,27 @@ const Upload = ({editProductId,setActiveTabKey}) => {
   };
 
   const deleteHandler = (img) => {
-    setPreviewImages(prevImg => prevImg.filter(e => e!== img));
-    URL.revokeObjectURL(img);
-  };
+    const indexToDelete = previewImages.findIndex((e) => e === img);
 
+    // update selected images count
+    setSelectedImagesCount((prev) => prev - 1);
+
+    if (indexToDelete !== -1) {
+      const updatedSeletedImages = [...images];
+      updatedSeletedImages.splice(indexToDelete, 1);
+
+      setImages(updatedSeletedImages);
+      setPreviewImages((prevImg) => prevImg.filter((e) => e !== img));
+
+      URL.revokeObjectURL(img);
+    }
+  };
   const submitHandler = async (e) => {
     e.preventDefault();
+    dispatch(setLoader(true));
 
-    const formData = new FormData();
+    if(selectedImagesCount >= 2 ){
+      const formData = new FormData();
     for (let i = 0; i < images.length; i++) {
       formData.append("product_images", images[i]);
     }
@@ -62,7 +88,13 @@ const Upload = ({editProductId,setActiveTabKey}) => {
     } catch (err) {
       message.error(err.message);
     }
+    }else{
+      message.error("Please select at least two images.")
+    }
+
+    dispatch(setLoader(false));
   };
+
   const savedImageDeleteHandler = async (img) => {
     setSavedImages((prev) => prev.filter((e) => e !== img));
     try {
@@ -82,7 +114,7 @@ const Upload = ({editProductId,setActiveTabKey}) => {
   return (
     <section>
       <h1 className="text-2xl font-bold mb-5 text-blue-600">
-        Upload Your Product's Image here.
+        Upload at least Two Images of Your Product here.
       </h1>
 
       <div className="mt-2">
@@ -109,7 +141,7 @@ const Upload = ({editProductId,setActiveTabKey}) => {
             </div>
           </>
         ) : (
-          <p className="text-red-600 text-sm mb-5">no images are not saved.</p>
+          <p className="text-red-600 text-sm mb-5">No images available.</p>
         )}
       </div>
       <form
@@ -149,9 +181,11 @@ const Upload = ({editProductId,setActiveTabKey}) => {
             </div>
           ))}
         </div>
-        <button className="block my-4 text-white bg-blue-600 rounded-md px-2 py-1 font-medium  hover:bg-white hover:text-blue-600 hover: border-2 border-blue-600">
-          Upload
+        {
+          selectedImagesCount > 1 && <button className="block my-4 text-white bg-blue-600 rounded-md px-2 py-1 font-medium  hover:bg-white hover:text-blue-600 hover: border-2 border-blue-600" disabled={isProcessing && selectedImagesCount < 1}>
+          {isProcessing ? "Uploading ..." : "Upload"}
         </button>
+        }
       </form>
     </section>
   );

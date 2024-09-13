@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 
 import userReducer from "./slices/userSlice";
+import loaderReducer from "./slices/loaderSlice";
 
 const persistConfig = {
   key: "root",
@@ -13,6 +14,7 @@ const persistConfig = {
 
 const combinedReducers = combineReducers({
   user: userReducer,
+  loader : loaderReducer
 });
 
 const persist_reducer = persistReducer(persistConfig, combinedReducers);

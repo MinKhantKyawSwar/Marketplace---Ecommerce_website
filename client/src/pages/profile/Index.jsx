@@ -79,12 +79,14 @@ const Index = () => {
   };
 
   return (
-    <Tabs
-      activeKey={activeTabKey}
-      tabPosition="left"
-      items={items}
-      onChange={(key) => onChangeHandler(key)}
-    />
+    <section>
+      <Tabs
+        activeKey={activeTabKey}
+        tabPosition="left"
+        items={items}
+        onChange={(key) => onChangeHandler(key)}
+      />
+    </section>
   );
 };
 

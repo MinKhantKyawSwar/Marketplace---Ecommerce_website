@@ -2,18 +2,19 @@ import { Form, Input, message } from "antd";
 import { loginUser, registerUser } from "../apicalls/auth";
 
 import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { setUser } from "../store/slices/userSlice";
+import { setLoader } from "../store/slices/loaderSlice";
 
 const AuthForm = ({ isLoginPage }) => {
-  const [submitting, setSubmitting] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { isProcessing } = useSelector((state) => state.reducer.loader);
+
   const HandleOnFinish = async (values) => {
-    setSubmitting(true);
+    dispatch(setLoader(true))
     if (isLoginPage) {
       try {
         const response = await loginUser(values);
@@ -43,7 +44,7 @@ const AuthForm = ({ isLoginPage }) => {
         message.error(error.message);
       }
     }
-    setSubmitting(false);
+    dispatch(setLoader(false))
   };
 
   return (
@@ -113,11 +114,12 @@ const AuthForm = ({ isLoginPage }) => {
             <button
               type="submit"
               className="w-full outline-none bg-blue-600 text-white py-2 rounded-md"
-              disabled={submitting}
+              disabled={isProcessing}
             >
-              {isLoginPage && !submitting && "Login"}
-              {!isLoginPage && !submitting && "Register"}
-              {submitting && "Submitting"}
+              {isLoginPage && !isProcessing && "Login"}
+              {!isLoginPage && !isProcessing && "Register"}
+              {isLoginPage && isProcessing && "Logging in ..."}
+              {!isLoginPage && isProcessing && "Registering ..."}
             </button>
           </Form.Item>
           <p>
