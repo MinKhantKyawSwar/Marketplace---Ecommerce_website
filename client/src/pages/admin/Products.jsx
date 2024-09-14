@@ -1,9 +1,10 @@
 import moment from "moment";
+import React from "react";
 import { message } from "antd";
 import {
   approveProduct,
   rejectProduct,
-  rollBackProduct
+  rollBackProduct,
 } from "../../apicalls/admin";
 
 const Products = ({ products, getProducts }) => {
@@ -35,7 +36,6 @@ const Products = ({ products, getProducts }) => {
     }
   };
 
-  
   const rollbackHandler = async (productId) => {
     try {
       const response = await rollBackProduct(productId);
@@ -48,123 +48,123 @@ const Products = ({ products, getProducts }) => {
     } catch (err) {
       message.error(err.message);
     }
-  }; 
+  };
 
   return (
     <section>
-    <h1 className=" text-3xl font-semibold my-2">Products List</h1>
-    <div className="relative overflow-x-none shadow-md sm:rounded-lg">
-      <table className="w-full text-sm text-left text-gray-500 ">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 text-center ">
-          <tr>
-            <th scope="col" className="px-6 py-3 text-left">
-              Product name
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Category
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Seller
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Sell Date
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Status
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody className="text-center">
-          {products.length > 0 ? (
-            <>
-              {products.map((product) => (
-                <tr
-                  key={product._id}
-                  className="odd:bg-white even:bg-gray-50  border-b "
-                >
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
-                  >
-                    {product.name}
-                  </th>
-                  <td className="px-6 py-4">{product.category}</td>
-                  <td className="px-6 py-4">{product.seller.name}</td>
-                  <td className="px-6 py-4">
-                    {moment(product.createdAt).format("L")}
-                  </td>
-                  <td className="px-6 py-4">
-                    {product.status === "pending" && (
-                      <span className="bg-orange-400 text-xs p-1 rounded-md text-white">
-                        {product.status}
-                      </span>
-                    ) }
-                    {product.status === "approved" && 
-                     (
-                      <span className="bg-green-400 text-xs p-1 rounded-md text-white">
-                        {product.status}
-                      </span>
-                    )}
-                    {product.status === "rejected" && 
-                     (
-                      <span className="bg-red-600 text-xs p-1 rounded-md text-white">
-                        {product.status}
-                      </span>
-                    )}
-                  </td>
-                  <td className="px-6 py-4 text-center flex flex-row items-center">
-                    {
-                      product.status === "approved" ? (
-                        <button
-                        type="button"
-                        className="font-medium text-blue-600 me-4 hover:underline"
-                        onClick={() => rollbackHandler(product._id)}
-                      >
-                        Rollback
-                      </button>
-                      ) : (
-                        <button
-                        type="button"
-                        className="font-medium text-blue-600 me-4 hover:underline"
-                        onClick={() => approveHandler(product._id)}
-                      >
-                        Approve
-                      </button>
-                      )
-                    }
-                    {
-                      product.status === "rejected" ? (
-                        <button
-                        type="button"
-                        className="font-medium text-blue-600 me-4 hover:underline"
-                        onClick={() => rollbackHandler(product._id)}
-                      >
-                        Rollback
-                      </button>
-                      ) : (
-                      <button
-                        type="button"
-                        className="font-medium text-red-600 me-4 hover:underline"
-                        onClick={() => rejectHandler(product._id)}
-                      >
-                        Reject
-                      </button>
+      <h1 className=" text-3xl font-semibold my-2">Products List</h1>
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left text-gray-500 ">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 text-center ">
+            <tr>
+              <th scope="col" className="px-6 py-3 text-left">
+                Product name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Category
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Seller
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Sell Date
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Status
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody className="text-center">
+            {products.length > 0 ? (
+              <>
+                {products.map((product) => (
+                  <tr className="bg-white border-b " key={product._id}>
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-left"
+                    >
+                      {product.name}
+                    </th>
+                    <td className="px-6 py-4">{product.category}</td>
+                    <td className="px-6 py-4">{product.seller.name}</td>
+                    <td className="px-6 py-4">
+                      {moment(product.createdAt).format("L")}
+                    </td>
+                    <td className="px-6 py-4">
+                      {product.status === "pending" && (
+                        <span className=" bg-orange-400 text-xs p-1 rounded-md text-white">
+                          {product.status}
+                        </span>
+                      )}{" "}
+                      {product.status === "approved" && (
+                        <span className="bg-green-400 text-xs p-1 rounded-md text-white">
+                          {product.status}
+                        </span>
+                      )}
+                      {product.status === "rejected" && (
+                        <span className="bg-red-600 text-xs p-1 rounded-md text-white">
+                          {product.status}
+                        </span>
                       )}
                     </td>
-                </tr>
-              ))}
-            </>
-          ) : (
-            <p>No available products to show.</p>
-          )}
-        </tbody>
-      </table>
-    </div>
-  </section>
-  )
-}
+                    <td className="px-6 py-4">
+                      {product.status === "approved" ? (
+                        <button
+                          type="button"
+                          className="font-medium text-blue-600 hover:underline me-4"
+                          onClick={() => {
+                            rollbackHandler(product._id);
+                          }}
+                        >
+                          Roll Back
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          className="font-medium text-blue-600 hover:underline me-4"
+                          onClick={() => {
+                            approveHandler(product._id);
+                          }}
+                        >
+                          Approve
+                        </button>
+                      )}
+                      {product.status === "rejected" ? (
+                        <button
+                          type="button"
+                          className="font-medium text-red-600 hover:underline me-4"
+                          onClick={() => {
+                            rollbackHandler(product._id);
+                          }}
+                        >
+                          Roll Back
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          className="font-medium text-red-600 hover:underline me-4"
+                          onClick={() => {
+                            rejectHandler(product._id);
+                          }}
+                        >
+                          Reject
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </>
+            ) : (
+              <p>No proudcts added yet.</p>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+};
 
-export default Products
+export default Products;

@@ -1,0 +1,260 @@
+[{
+  "name": "PS5",
+  "description": "Lorem ipsum dolor sit amet consectetur, adipiscing elit diam dis tempus morbi, magnis aenean curabitur accumsan. Pulvinar ut id platea eget ligula vehicula vestibulum volutpat inceptos, quis enim libero vel sed primis tellus nostra, ornare nam ac mauris non eu cras dis. Nullam suspendisse facilisi ut molestie congue ullamcorper nibh laoreet, at commodo placerat id posuere porta arcu, conubia nunc in donec taciti venenatis metus. V",
+  "price": "1231",
+  "category": "electronics_and_gadgets",
+  "usedFor": "1 month",
+  "details": [
+    "warrenty",
+    "voucher"
+  ],
+  "status": "approved",
+  "seller": {
+    "$oid": "66d89acea5988bef87616e54"
+  },
+  "createdAt": {
+    "$date": "2024-09-08T14:46:03.743Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-08T14:46:03.743Z"
+  },
+  "__v": 0
+},
+{
+  "name": "Fragrance",
+  "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit aliquet ante suscipit curae nisi, congue turpis non cum et eu proin auctor dictum at nisl. Mauris parturient pulvinar laoreet magnis auctor venenatis luctus morbi lectus, gravida ullamcorper interdum penatibus lacus quisque augue cursus. Himenaeos class tristique cursus est nam mi ut volutpat magnis m",
+  "price": "130",
+  "category": "beauty_and_personal_care",
+  "usedFor": "3 Months ago",
+  "details": [
+    "warrenty",
+    "voucher"
+  ],
+  "status": "approved",
+  "seller": {
+    "$oid": "66d89acea5988bef87616e54"
+  },
+  "createdAt": {
+    "$date": "2024-09-08T14:55:34.892Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-14T10:59:11.374Z"
+  },
+  "__v": 1,
+  "images": []
+},
+{
+  "name": "Chair",
+  "description": "m ipsum dolor sit amet consectetur adipiscing elit suspendisse, sollicitudin fermentum consequat scelerisque dignissim curae erat, cubilia magnis maecenas ullamcorper suscipit fames curabitur. Semper eros bibendum conubia ornare himenaeos tempor sociosqu auctor interdum turpis, ante class placerat nascetur risus dis aenean eu per. Leo sagittis ut tristique in eu iaculis sollicitudin nec tortor, hac commodo quis himenaeos per ante torquent. Praesent neque class pellentesque vehicula fermentum cubilia purus sodales, rutrum parturient facilisi nascetur erat ultrices hendre",
+  "price": "899",
+  "category": "home_and_furniture",
+  "usedFor": "6 Months ago",
+  "details": [
+    "accessories",
+    "warrenty"
+  ],
+  "status": "rejected",
+  "seller": {
+    "$oid": "66d89acea5988bef87616e54"
+  },
+  "createdAt": {
+    "$date": "2024-09-08T14:58:05.385Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-14T11:12:10.805Z"
+  },
+  "__v": 1,
+  "images": []
+},
+{
+  "name": "Lipstick",
+  "description": "ae ut felis molestie ad auctor penatibus, lobortis facilisis turpis nam pharetra fringilla. Sem senectus lacus libero mi arcu eleifend primis ornare suscipit vehicula, placerat morbi nulla magnis cubilia facilisis odio aliquam penatibus, fringilla nam quam ligula praesent interdum ut pulvinar hac. Conubia ante eget mattis sociis rutrum nisi euismod phasellus duis, elementum id laoreet nulla eros h",
+  "price": "1000",
+  "category": "beauty_and_personal_care",
+  "usedFor": "1 Year ago",
+  "details": [
+    "accessories"
+  ],
+  "status": "pending",
+  "seller": {
+    "$oid": "66d8879bcaa991742d2283ba"
+  },
+  "createdAt": {
+    "$date": "2024-09-09T13:50:04.059Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-14T11:22:06.348Z"
+  },
+  "__v": 1,
+  "images": []
+},
+{
+  "name": "I phone 13 pro max",
+  "description": "rem ipsum dolor sit amet consectetur adipiscing elit proin, malesuada varius orci diam purus elementum quam, morbi augue facilisis dictumst ad imperdiet nibh. Litora conubia tellus taciti volutpat phasellus cum mus, laoreet dignissim erat pulvinar dictum pellentesque morbi ad, consequat odio integer maecenas elementum diam.\n\nQuam aptent taciti ultrici",
+  "price": "1000",
+  "category": "electronics_and_gadgets",
+  "usedFor": "10 Months ago",
+  "details": [
+    "accessories",
+    "voucher"
+  ],
+  "status": "approved",
+  "seller": {
+    "$oid": "66d8879bcaa991742d2283ba"
+  },
+  "createdAt": {
+    "$date": "2024-09-09T14:25:09.615Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-09T16:28:36.963Z"
+  },
+  "__v": 1,
+  "images": []
+},
+{
+  "name": "Basketball",
+  "description": "t etiam arcu potenti magna, nam non feugiat pulvinar nunc vivamus id odio dapibus. Varius est ligula praesent leo sagittis conubia integer neque mus, felis ornare phasellus aptent orci porttitor nisl laoreet curabitur, risus quam suscipit magnis arcu parturient maecenas vel. Porta leo purus quis ridiculus sollicitudin magnis lobortis congue ornare, nec est vestibulum imperdiet sagittis faucibus pharetra sem, hac laoreet malesuada commodo posuere dictum integer",
+  "price": "1000",
+  "category": "sports_and_fitness",
+  "usedFor": "abcde",
+  "details": [
+    "warrenty",
+    "voucher"
+  ],
+  "status": "pending",
+  "seller": {
+    "$oid": "66d8879bcaa991742d2283ba"
+  },
+  "createdAt": {
+    "$date": "2024-09-09T17:01:50.088Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-09T17:02:50.879Z"
+  },
+  "__v": 0
+},
+{
+  "name": "Spiderman figure",
+  "description": "t etiam arcu potenti magna, nam non feugiat pulvinar nunc vivamus id odio dapibus. Varius est ligula praesent leo sagittis conubia integer neque mus, felis ornare phasellus aptent orci porttitor nisl laoreet curabitur, risus quam suscipit magnis arcu parturient maecenas vel. Porta leo purus quis ridiculus sollicitudin magnis lobortis congue ornare, nec est vestibulum imperdiet sagittis faucibus pharetra sem, hac laoreet malesuada commodo posuere dictum integert etiam arcu potenti magna, nam non feugiat pulvinar nunc vivamus id odio dapibus. Varius est ligula praesent leo sagittis conubia integer neque mus, felis ornare phasellus aptent orci porttitor nisl laoreet curabitur, risus quam suscipit magnis arcu parturient maecenas vel. Porta leo purus quis ridiculus sollicitudin magnis lobortis congue ornare, nec est vestibulum imperdiet sagittis faucibus pharetra sem, hac laoreet malesuada commodo posuere dictum integer",
+  "price": "1000",
+  "category": "toys_and_games",
+  "usedFor": "5 Months ago",
+  "details": [
+    "warrenty",
+    "voucher"
+  ],
+  "status": "rejected",
+  "seller": {
+    "$oid": "66d8879bcaa991742d2283ba"
+  },
+  "createdAt": {
+    "$date": "2024-09-09T17:02:11.800Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-14T12:26:50.009Z"
+  },
+  "__v": 1,
+  "images": []
+},
+{
+  "name": "T shirt",
+  "description": "natis natoque ut nascetur ac eros. Urna metus duis mi leo platea lectus ornare cum massa, est fermentum sapien euismod hendrerit tincidunt aptent odio. Sollicitudin congue vitae placerat tempor eleifend habitant integer hac suspendisse arcu facilisis, iaculis semper faucibus proin consequat sociis ad primis quis.\n\nDui tristique eu nisl felis fermentum montes netus suscipit habitant, gravida ut pellentesque at etiam class sociosqu dapibus, suspendisse iaculis viverra hendrerit libero interdum vitae nibh. Habitant parturient mi laoreet facilisi posuere etiam nulla, malesuada platea primis quis pretium sed elementum sodales, porta dictumst habitasse leo suspendisse sociis. Senectus nunc mi viverra ad porttitor co",
+  "price": "200",
+  "category": "clothing_and_fashion",
+  "usedFor": "6 months",
+  "details": [
+    "accessories",
+    "voucher"
+  ],
+  "images": [
+    "https://res.cloudinary.com/dcwg5gtc4/image/upload/v1726237804/hs1mxevyfybfegj05eyk.jpg",
+    "https://res.cloudinary.com/dcwg5gtc4/image/upload/v1726237804/gfroxbnfy2p5vafusyty.jpg"
+  ],
+  "status": "pending",
+  "seller": {
+    "$oid": "66d89acea5988bef87616e54"
+  },
+  "createdAt": {
+    "$date": "2024-09-12T15:38:38.781Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-13T14:30:05.307Z"
+  },
+  "__v": 0
+},
+{
+  "name": "Lamp",
+  "description": "n enim sed libero est per iaculis duis conubia egestas, massa sagittis pharetra lacinia molestie convallis quam fermentum risus sodales vestibulum ligula nunc, ultrices senectus ac non taciti sem fames sapien nam dignissim ultricies.\n\nAt class vestibulum potenti ac tempor sem iaculis velit, ante laoreet nascetur inceptos non proin in rutrum, netus penatibus vivamus ornare posuere justo sociis. Lacinia neque interdum lobortis mattis eros blandit est suspendisse, ante vehicula purus fringilla venenatis netus dapibus. Condimentum posuere felis molestie sociis cum interdum metus blandit morbi neque, nunc aenean fames pharetra lectus diam potenti odio fermentum, phasellus arcu habitasse sed proin nisl volutpat in auctor.\n\n<p>Lorem ipsum dolor sit amet consectetur adipiscing, elit ad natoque rhoncus euismod nibh sociosqu, tempus torquent hac convallis sociis. Placerat sem ridiculus lectus potenti hac per etiam blandit porttitor, lacus tellus at risus ante nisi interdum curae. Fusce eget congue aenean enim sed libero est per iaculis duis conubia egestas, massa sagittis pharetra lacinia molestie convallis quam fermentum risus sodales vestibulum ligula nunc, ultrices senectus ac non taciti sem fames sapien nam dignissim ultricies.</p><p>At class vestibulum potenti ac tempor sem iaculis velit, ante laoreet nascetur inceptos non proin in rutrum, netus penatibus vivamus ornare posuere justo sociis. Lacinia neque interdum lobortis mattis eros blandit est suspendisse, ante vehicula purus fringilla venenatis netus dapibus. Condimentum posuere felis molestie sociis cum interdum metus blandit morbi neque, nunc aenean fames pharetra lectus diam potenti odio fermentum, phasellus arcu habitasse sed proin nisl volutpat in auctor.</p>",
+  "price": "241",
+  "category": "electronics_and_gadgets",
+  "usedFor": "1",
+  "details": [
+    "warrenty",
+    "voucher"
+  ],
+  "images": [],
+  "status": "pending",
+  "seller": {
+    "$oid": "66d89acea5988bef87616e54"
+  },
+  "createdAt": {
+    "$date": "2024-09-13T14:22:32.814Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-13T14:22:32.814Z"
+  },
+  "__v": 0
+},
+{
+  "name": "Pineapple Hoodie",
+  "description": "s morbi velit elementum varius pharetra mauris turpis consequat, dignissim litora hac mi est lectus. Risus arcu eleifend nec mi sollicitudin tempor ullamcorper neque aptent, magnis interdum ligula volutpat montes semper fusce id mus, nulla egestas mollis vitae facilisis nullam nunc augue.\n\nOdio euismod mattis sollicitudin tellus potenti aenean in quisque, tempus cras luctus ullamcorper netus nisl taciti orci mollis, bibendum pretium fermentum litora montes libero blandit. Phasellus placerat condimentum nisi praesent ut n",
+  "price": "42",
+  "category": "clothing_and_fashion",
+  "usedFor": "5 months",
+  "details": [
+    "warrenty",
+    "voucher"
+  ],
+  "images": [
+    "https://res.cloudinary.com/dcwg5gtc4/image/upload/v1726248003/qbixqw1mzd7anvmlibe2.jpg",
+    "https://res.cloudinary.com/dcwg5gtc4/image/upload/v1726248004/gelemxvczqo2jmysnnnl.jpg"
+  ],
+  "status": "pending",
+  "seller": {
+    "$oid": "66d89acea5988bef87616e54"
+  },
+  "createdAt": {
+    "$date": "2024-09-13T17:05:51.425Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-13T17:20:03.926Z"
+  },
+  "__v": 0
+},
+{
+  "name": "Min Lu",
+  "description": "local hosertkdf aj fksaj skajs kaj gksajgk saijg flksojh kldsig d",
+  "price": "123",
+  "category": "books_and_media",
+  "usedFor": "1 month",
+  "details": [
+    "accessories",
+    "warrenty"
+  ],
+  "images": [
+    "https://res.cloudinary.com/dcwg5gtc4/image/upload/v1726317109/mgxjgu3esdpht6tgvztn.jpg",
+    "https://res.cloudinary.com/dcwg5gtc4/image/upload/v1726317110/zq6cducnimvxjxdsa0ch.jpg",
+    "https://res.cloudinary.com/dcwg5gtc4/image/upload/v1726317110/tje03gchcrfskr7aapmp.jpg"
+  ],
+  "status": "approved",
+  "seller": {
+    "$oid": "66d89acea5988bef87616e54"
+  },
+  "createdAt": {
+    "$date": "2024-09-14T12:31:17.023Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-14T12:32:00.829Z"
+  },
+  "__v": 0
+}]
