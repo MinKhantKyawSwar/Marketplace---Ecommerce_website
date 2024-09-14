@@ -69,6 +69,11 @@ exports.login = async (req, res, next) => {
       throw new Error("Wrong User Credentials.");
     }
 
+    //account status check
+    if(userDoc.status == "banned"){
+      throw new Error("This Account is temporarily disabled by the admin.");
+    }
+
     //create jwt token
     const token = jwt.sign({ userId: userDoc._id }, process.env.JWT_KEY, {
       expiresIn: "1d",

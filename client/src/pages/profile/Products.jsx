@@ -79,16 +79,24 @@ const Products = ({
                       {moment(product.createdAt).format("L")}
                     </td>
                     <td className="px-6 py-4">
-                      {product.status === "pending" ? (
-                        <span className="bg-orange-400 text-xs p-1 rounded-md text-white">
-                          {product.status}
-                        </span>
-                      ) : (
-                        <span className="bg-green-400 text-xs p-1 rounded-md text-white">
-                          {product.status}
-                        </span>
-                      )}
-                    </td>
+                    {product.status === "pending" && (
+                      <span className="bg-orange-400 text-xs p-1 rounded-md text-white">
+                        {product.status}
+                      </span>
+                    ) }
+                    {product.status === "approved" && 
+                     (
+                      <span className="bg-green-400 text-xs p-1 rounded-md text-white">
+                        {product.status}
+                      </span>
+                    )}
+                    {product.status === "rejected" && 
+                     (
+                      <span className="bg-red-600 text-xs p-1 rounded-md text-white">
+                        {product.status}
+                      </span>
+                    )}
+                  </td>
                     <td className="px-6 py-4 text-center flex flex-row items-center">
                       <button
                         type="button"
@@ -106,7 +114,7 @@ const Products = ({
                       </button>
                       <button
                         type="button"
-                        className="font-medium text-red-500 hover:underline"
+                        className="font-medium text-red-600 hover:underline"
                         onClick={() => deleteHandler(product._id)}
                       >
                         Delete
