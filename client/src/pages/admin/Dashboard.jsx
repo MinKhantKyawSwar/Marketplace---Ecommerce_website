@@ -24,13 +24,13 @@ const Dashboard = ({products, users}) => {
     },[products])
   return (
     <section>
-    <div className='flex items-center gap-6'>
+    <div className='flex items-center gap-6 px-2'>
         <Card title={"Total Sales"} count = {`${totalSales} MMK`} icon={BanknotesIcon} note={"MMK"}/> 
         <Card title={"Active Users"} count = {userCount} icon={UserGroupIcon} note={"users"}/> 
         <Card title={"Products"} count = {productCount} icon={ShoppingCartIcon} note={"items"}/> 
     </div>
-   <AreaCustomChart/>
-   <CustomBarList/>
+   <AreaCustomChart products={products}/>
+   <CustomBarList products={products}/>
     </section>
   )
 }

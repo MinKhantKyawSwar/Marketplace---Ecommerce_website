@@ -1,70 +1,52 @@
 import { AreaChart } from '@tremor/react';
+import {format} from "date-fns"
 
-const chartdata = [
-  {
-    date: 'Jan 22',
-"Products Sell Rate": 2890
-  },
-  {
-    date: 'Feb 22',
-"Products Sell Rate": 2756
-  },
-  {
-    date: 'Mar 22',
-"Products Sell Rate": 3322
-  },
-  {
-    date: 'Apr 22',
-"Products Sell Rate": 3470
-  },
-  {
-    date: 'May 22',
-"Products Sell Rate": 3475
-  },
-  {
-    date: 'Jun 22',
-"Products Sell Rate": 3129
-  },
-  {
-    date: 'Jul 22',
-"Products Sell Rate": 3490
-  },
-  {
-    date: 'Aug 22',
-"Products Sell Rate": 2903
-  },
-  {
-    date: 'Sep 22',
-"Products Sell Rate": 2643
-  },
-  {
-    date: 'Oct 22',
-"Products Sell Rate": 2837
-  },
-  {
-    date: 'Nov 22',
-"Products Sell Rate": 2954
-  },
-  {
-    date: 'Dec 22',
-"Products Sell Rate": 3239
-  },
-];
+export default ({products}) =>  {
+  
+  //getting date from one week
+  const currentDate = new Date();
+  const lastOneWeek = new Date();
+  lastOneWeek.setDate(currentDate.getDate() - 7)
+  
+  const productDailySale = {};
 
-const valueFormatter = function (number) {
-  return new Intl.NumberFormat('us').format(number).toString() + " MMK";
-};
+  //calc products in one week 
+  products.forEach(product => {
+    const productSaleDate = new Date(product.createdAt);
+    // 8/10 <= last 1 week
+    // 12/10 <= productSellDate
+    // 13/10 <= current date
 
-export default () =>  {
+    if (productSaleDate <= currentDate && productSaleDate >= lastOneWeek){
+      const formattedSaleDate =  format(new Date(productSaleDate),"dd/MM")
+      if(!productDailySale[formattedSaleDate]){
+        productDailySale[formattedSaleDate] = 0;
+      }
+        productDailySale[formattedSaleDate] +=1;
+    }
+  })
+  //targets
+  //limit date(last 1 week)
+  //filter how many products are in last 1 week per day.
+  //[{date: 10/12, "Product Sale" : productCount}]
+  const chartdata = Object.entries(productDailySale).map(([key, val])=> ({
+    date : key,
+    "Products Sale" : val
+  }))
+
+  const valueFormatter = function (number) {
+    return new Intl.NumberFormat('us').format(number).toString();
+  };
+  
   return (
     <section className="mt-4 w-full">
-      <h3 className="text-tremor-default ">Product Sell Rates Per Day</h3>
+      <h3 className="text-tremor-default ">Product Sale Per Day</h3>
       <AreaChart
         className="mt-4 h-72"
         data={chartdata}
         index="date"
         yAxisWidth={65}
-        categories={["Products Sell Rate"]}
+        categories={["Products Sale"]}
         colors={['indigo', 'cyan']}
         valueFormatter={valueFormatter}
       />
