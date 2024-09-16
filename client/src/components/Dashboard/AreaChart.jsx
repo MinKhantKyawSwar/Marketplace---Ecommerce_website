@@ -1,8 +1,9 @@
 import { AreaChart } from '@tremor/react';
 import {format} from "date-fns"
+import { useState } from 'react';
 
 export default ({products}) =>  {
-  
+  const [sortDate, setSortDate] = useState([])
   //getting date from one week
   const currentDate = new Date();
   const lastOneWeek = new Date();
@@ -23,8 +24,9 @@ export default ({products}) =>  {
         productDailySale[formattedSaleDate] = 0;
       }
         productDailySale[formattedSaleDate] +=1;
-    }
+    }    
   })
+
   //targets
   //limit date(last 1 week)
   //filter how many products are in last 1 week per day.

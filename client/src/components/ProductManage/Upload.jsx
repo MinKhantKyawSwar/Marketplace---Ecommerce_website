@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { XMarkIcon, EllipsisHorizontalIcon } from "@heroicons/react/24/solid";
-import { deleteSavedImages, uploadImage } from "../apicalls/product";
+import { deleteSavedImages, uploadImage } from "../../apicalls/product";
 import { message } from "antd";
-import { getSavedImages } from "../apicalls/product";
+import { getSavedImages } from "../../apicalls/product";
 
 import {useDispatch, useSelector }from "react-redux"
-import { setLoader} from "../store/slices/loaderSlice";
+import { setLoader} from "../../store/slices/loaderSlice";
 
 
 const Upload = ({editProductId,setActiveTabKey}) => {

@@ -15,14 +15,15 @@ const AuthProvider = ({ children }) => {
         dispatch(setUser(response.userDoc));
       } else {
         localStorage.removeItem("token");
-        dispatch(setUser(null))
+        dispatch(setUser(null));
         navigate("/");
         throw new Error(response.message);
       }
-    } catch (error) {
-      console.log(error.message);
+    } catch (err) {
+      console.log(err.message);
     }
   };
+
   useEffect((_) => {
     getCurrentUser();
   }, []);

@@ -8,10 +8,15 @@ const Nav = () => {
   const { user } = useSelector((state) => state.reducer.user);
   
   return (
-    <nav className="text-white bg-blue-500 flex items-center justify-between p-4 rounded-sm">
-      <Link to={"/"} className="font-bold text-2xl">
-        POINT.io
+    <nav className="text-blue-600 flex items-center justify-between py-4 mb-4 rounded-sm">
+      <Link to={"/"} className="font-bold text-4xl">
+        TradeHub
       </Link>
+      <div className="flex items-center gap-3">
+        <Link to={"/about"}>About</Link>
+        <Link to={"/contact"}>Contact</Link>
+        <Link to={"/frequently-asked"}>F&Q</Link>
+      </div>
       {user ? (
         <>
           {

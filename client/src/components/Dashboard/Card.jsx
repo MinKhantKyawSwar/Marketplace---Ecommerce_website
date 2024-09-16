@@ -3,7 +3,7 @@ import { Badge, Card, Metric, Text, Flex } from '@tremor/react';
 export default ({title, count, icon, note}) =>{
   return (
     <Card
-      className="w-full rounded-lg mt-2"
+      className="max-w-full rounded-lg mt-2"
       decoration="top"
       decorationColor="blue"
     >

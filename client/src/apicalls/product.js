@@ -94,3 +94,15 @@ export const deleteSavedImages = async (payload) => {
     return error.message;
   }
 };
+
+//////////////////////////// PUBLIC ////////////////////////////////////
+
+// get all products
+export const getProducts = async () => {
+  try {
+    const response = await axiosInstance.get("/api/products");
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+};
