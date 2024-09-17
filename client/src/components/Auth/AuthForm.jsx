@@ -47,7 +47,7 @@ const AuthForm = ({ isLoginPage }) => {
   };
 
   return (
-    <section className="h-screen w-full flex items-center justify-center mt-40 ">
+    <section className="h-screen w-full flex items-center justify-center">
       <div className="w-[450px] border border-blue-400 px-10 py-5 rounded-md">
         <h1 className="text-3xl font-bold mb-4 text-blue-600 text-center pb-3">
           POINT.io {isLoginPage ? "LOGIN" : "REGISTER"}

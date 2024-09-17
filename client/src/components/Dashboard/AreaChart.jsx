@@ -3,7 +3,7 @@ import {format} from "date-fns"
 import { useState } from 'react';
 
 export default ({products}) =>  {
-  const [sortDate, setSortDate] = useState([])
+  const [sortedDate, setSortedDate] = useState([])
   //getting date from one week
   const currentDate = new Date();
   const lastOneWeek = new Date();
@@ -35,6 +35,9 @@ export default ({products}) =>  {
     date : key,
     "Products Sale" : val
   }))
+
+  chartdata.reverse();
+  
 
   const valueFormatter = function (number) {
     return new Intl.NumberFormat('us').format(number).toString();

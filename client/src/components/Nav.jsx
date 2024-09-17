@@ -8,7 +8,7 @@ const Nav = () => {
   const { user } = useSelector((state) => state.reducer.user);
   
   return (
-    <nav className="text-blue-600 flex items-center justify-between py-4 mb-4 rounded-sm">
+    <nav className="text-blue-600 flex items-center justify-between py-4  rounded-sm">
       <Link to={"/"} className="font-bold text-4xl">
         TradeHub
       </Link>

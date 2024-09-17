@@ -106,3 +106,22 @@ export const getProducts = async () => {
     return error.message;
   }
 };
+
+// get Products By Filters
+export const getProductsByFilters = async (key, value)=>{
+  try{
+    const response = await axiosInstance.get(`/api/products/filters?${key}=${value}`)
+    return response.data;
+  }catch(error){
+    return error.message;
+  }
+}
+
+export const getProductById = async (id)=>{
+  try{
+    const response = await axiosInstance.get(`/api/products/${id}`)
+    return response.data;
+  }catch(error){
+    return error.message;
+  }
+}

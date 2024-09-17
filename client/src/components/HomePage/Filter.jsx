@@ -1,8 +1,10 @@
-import React from 'react'
+import { message } from "antd";
+import { getProductsByFilters } from "../../apicalls/product";
+import { useState } from "react";
 
-const Filter = () => {
-    
-  const categories = [
+const Filter = ({ setProducts, getAllProducts }) => {
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const Categories = [
     {
       value: "clothing_and_fashion",
       label: "Clothing and Fashion",
@@ -32,14 +34,53 @@ const Filter = () => {
       label: "Toys and Games",
     },
   ];
-  return (
-    <div className='flex items-center gap-3 my-4 max-w-4xl mx-auto whitespace-nowrap flex-wrap justify-center'>
-    { 
-        categories.map(category => 
-        <p key={category.value} className='bg-blue-600 text-white p-2 rounded-lg text-sm'>{category.label}</p>)
-    }
-    </div>
-  )
-}
 
-export default Filter
+  const categoryHandler = async (i) => {
+    try {
+      setSelectedCategory(i);
+      const response = await getProductsByFilters(
+        "category",
+        Categories[i].value
+      );
+      if (response.isSuccess) {
+        setProducts(response.productDocs);
+      } else {
+        throw new Error(response.message);
+      }
+    } catch (err) {
+      message.error(err.message);
+    }
+  };
+
+  const clearHandler = () => {
+    setSelectedCategory("");
+    getAllProducts();
+  };
+
+  return (
+    <div className=" flex items-center gap-3 my-8 max-w-4xl mx-auto flex-wrap justify-center">
+      {Categories.map((category, index) => (
+        <p
+          key={category.value}
+          className={`px-2 py-1 rounded-md text-sm cursor-pointer border border-blue-600 text-blue-600 ${
+            index === selectedCategory && "border-dashed text-white bg-blue-600"
+          }`}
+          onClick={() => categoryHandler(index)}
+        >
+          {category.label}
+        </p>
+      ))}
+      {selectedCategory !== "" && (
+        <button
+          type="button"
+          className={`px-2 py-1 rounded-md text-sm cursor-pointer  border border-blue-600 text-white bg-blue-600`}
+          onClick={clearHandler}
+        >
+          Clear
+        </button>
+      )}
+    </div>
+  );
+};
+
+export default Filter;

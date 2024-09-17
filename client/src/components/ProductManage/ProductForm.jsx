@@ -176,7 +176,7 @@ const ProductForm = ({
               ]}
               hasFeedback
             >
-              <Input type="number" placeholder="eg: $ 250"></Input>
+              <Input type="number" placeholder="eg: MMK 250000"></Input>
             </Form.Item>
           </Col>
           <Col span={8}>
