@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { UserIcon } from "@heroicons/react/24/solid";
+import { UserIcon, BookmarkIcon } from "@heroicons/react/24/solid";
 
 const Nav = () => {
   const { user } = useSelector((state) => state.reducer.user);
@@ -18,7 +18,7 @@ const Nav = () => {
         <Link to={"/frequently-asked"}>F&Q</Link>
       </div>
       {user ? (
-        <>
+        <div className="flex items-center gap-4">
           {
             user.role === "user" && (
               <div className="flex items-center gap-3 text-base font-medium">
@@ -39,7 +39,12 @@ const Nav = () => {
             </div>
             )
           }
-        </>
+          <div className="flex items-center gap-3 text-base font-medium">
+              <Link to={"/saved-products"} className="flex items-end gap-1 rounded-md">
+                <BookmarkIcon width={26} />
+              </Link>
+            </div>
+        </div>
       ) : (
         <>
           <div className="flex items-center gap-3 text-base font-medium">

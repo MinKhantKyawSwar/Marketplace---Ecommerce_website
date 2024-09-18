@@ -125,3 +125,33 @@ export const getProductById = async (id)=>{
     return error.message;
   }
 }
+
+//saved product
+export const savedProduct = async (id) => {
+  try {
+    const response = await axiosInstance.post(`/saved-products/${id}`);
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+};
+
+//get saved products
+export const getSavedProducts = async () => {
+  try {
+    const response = await axiosInstance.get(`/saved-products`);
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+};
+
+// delete saved product
+export const deleteSavedProduct = async (id) => {
+  try {
+    const response = await axiosInstance.delete(`/unsaved-products/${id}`);
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+};
