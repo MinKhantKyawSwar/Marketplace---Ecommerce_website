@@ -28,7 +28,7 @@ const Index = () => {
         throw new Error(response.message);
       }
     } catch (err) {
-      message.error(err.message);
+      console.error(err.message);
     }
     dispatch(setLoader(false));
   };
@@ -72,6 +72,9 @@ const Index = () => {
           )}
         </div>
       )}
+      {
+        savedProducts.length === 0 && !isProcessing && <p className="font-medium text-red-600 my-2">There is no saved products.</p>
+      }
     </section>
   );
 };

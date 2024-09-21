@@ -12,7 +12,7 @@ import { RotatingLines } from "react-loader-spinner";
 
 const Index = () => {
   const [products, setProducts] = useState([]);
-  const [savedProducts, setSavedProducts] = useState([])
+  const [savedProducts, setSavedProducts] = useState([]);
   const dispatch = useDispatch();
 
   const { isProcessing } = useSelector((state) => state.reducer.loader);
@@ -42,7 +42,7 @@ const Index = () => {
         throw new Error(response.message);
       }
     } catch (err) {
-      message.error(err.message);
+      console.error(err.message);
     }
     dispatch(setLoader(false));
   };
@@ -67,9 +67,14 @@ const Index = () => {
           />
         </div>
       ) : (
-        <div className="max-w-4xl mx-auto grid grid-cols-2 gap-4">
+        <div className=" grid grid-cols-2 gap-4 max-w-4xl mx-auto">
           {products.map((product) => (
-            <Card product={product} key={product._id} savedProducts={savedProducts} getAllProducts={getAllProducts}/>
+            <Card
+              product={product}
+              key={product._id}
+              savedProducts={savedProducts}
+              getAllProducts={getAllProducts}
+            />
           ))}
         </div>
       )}
