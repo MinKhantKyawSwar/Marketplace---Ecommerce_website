@@ -141,7 +141,7 @@ router.get("/bids/:product_id", bidController.getAllBids);
 // POST /notify
 router.post("/notify", authMiddleware, notificationController.pushNotification)
 
-// get noti
+// get notifications
 // GET /notifications
 router.get("/notifications", authMiddleware, notificationController.getNotifications)
 
