@@ -98,9 +98,9 @@ export const deleteSavedImages = async (payload) => {
 //////////////////////////// PUBLIC ////////////////////////////////////
 
 // get all products
-export const getProducts = async () => {
+export const getProducts = async (page,perPage) => {
   try {
-    const response = await axiosInstance.get("/api/products");
+    const response = await axiosInstance.get(`/api/products?page=${page}&perPage=${perPage}`);
     return response.data;
   } catch (error) {
     return error.message;

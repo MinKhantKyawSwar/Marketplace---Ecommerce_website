@@ -145,4 +145,16 @@ router.post("/notify", authMiddleware, notificationController.pushNotification)
 // GET /notifications
 router.get("/notifications", authMiddleware, notificationController.getNotifications)
 
+// make noti as read
+// GET /notifications-read/:id
+router.get("/notifications-read/:id", authMiddleware, notificationController.markAsRead)
+
+// delete noti
+// DELETE /notification-delete
+router.delete("/notification-delete/:id", authMiddleware, notificationController.deleteNoti);
+
+// delete all noti
+// DELETE /notification-delete-all
+router.delete("/notification-delete-all", authMiddleware, notificationController.deleteAllNoti);
+
 module.exports = router;

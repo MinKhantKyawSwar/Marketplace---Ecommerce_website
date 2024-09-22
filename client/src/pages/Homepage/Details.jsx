@@ -115,7 +115,7 @@ const Details = () => {
                     <img
                       src={product.images[selectedImage]}
                       alt={product.name}
-                      className="w-full h-96 object-fill object-center rounded-xl overflow-hidden"
+                      className="w-full object-fill object-center rounded-xl overflow-hidden"
                     />
                     <div className="flex items-center gap-3 mt-3">
                       {product.images.map((i, index) => (
@@ -140,7 +140,7 @@ const Details = () => {
                     <img
                       src={TradeHub}
                       alt={product.name}
-                      className="w-full h-96 object-fill object-center rounded-xl overflow-hidden"
+                      className="w-full object-fill object-center  rounded-xl overflow-hidden"
                     />
                     <p className=" font-medium my-2 text-red-600">
                       This product does not include images.
@@ -271,7 +271,7 @@ const Details = () => {
                   )
                 }
                 {
-                   user._id===product.seller._id && (
+                   user?._id===product.seller._id && (
                     <p className="text-red-600">
                       You are the product seller or owner. You cannot place bid.
                     </p>
