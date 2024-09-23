@@ -16,7 +16,7 @@ export default ({title, count, icon, note}) =>{
           {note}
         </Badge>
         </Flex>
-      <Metric>{count}</Metric>
+      <Metric className='text-xs'>{count}</Metric>
     </Card>
   );
 }
