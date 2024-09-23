@@ -52,5 +52,3 @@ exports.getAllBids = async (req, res) => {
       });
     }
   };
-
-  //25:58
