@@ -1,4 +1,4 @@
-const Bid = require("../models/Bid");
+const Bid = require("../models/bid");
 
 exports.savedNewBid = async (req, res) => {
   const { message, phone, product_id, seller_id, buyer_id } = req.body;
