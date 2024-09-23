@@ -7,7 +7,7 @@ import { useEffect } from "react";
 const Notification = ({ notifications, getNoti }) => {
   useEffect(_=>{
     getNoti();
-  },[getNoti])
+  },[getNoti()])
   const markAsRead = async(id) => {
     try {
       const response = await makeRead(id);
@@ -54,9 +54,13 @@ const Notification = ({ notifications, getNoti }) => {
     <section>
       <div className="flex justify-between my-2">
         <h1 className="text-3xl font-semibold my-2">Notifications</h1>
-        <p className="font-medium my-2 underline cursor-pointer text-red-600" onClick={deleteAllHandler}>
+        {
+          notifications.length > 0 && <>
+          <p className="font-medium my-2 underline cursor-pointer text-red-600" onClick={deleteAllHandler}>
           Delete All
         </p>
+          </>
+        }
       </div>
      
       <div className=" max-w-3xl">

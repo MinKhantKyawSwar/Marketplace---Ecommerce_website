@@ -8,6 +8,9 @@ import Admin from "./pages/admin/Index";
 import AuthProvider from "./providers/AuthProvider";
 import Details from "./pages/Homepage/Details";
 import SavedProducts from "./pages/savedProducts/Index";
+import About from "./pages/Navpage/About";
+import Contact from "./pages/Navpage/Contact";
+import QandA from "./pages/Navpage/QandA";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -55,7 +58,16 @@ const App = () => {
           <AuthProvider>
             <SavedProducts/>
           </AuthProvider>
-        }
+        },{
+          path: "/about",
+          element: <About />,
+        },{
+          path: "/contact",
+          element: <Contact />,
+        },{
+          path: "/qanda",
+          element: <QandA />,
+        },
       ],
     },
   ]);

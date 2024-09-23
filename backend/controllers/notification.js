@@ -50,6 +50,10 @@ exports.markAsRead = async (req, res) => {
   try {
     const notiDocs = await Notification.findById(id);
 
+    if (req.userId.toString() !== notiDocs.seller.toString()) {
+      throw new Error("Authorization Failed.");
+    }
+
     if (!notiDocs || notiDocs.length === 0) {
       throw new Error("Notifications not found.");
     }
@@ -71,7 +75,16 @@ exports.markAsRead = async (req, res) => {
 
 exports.deleteNoti = async(req, res) => {
   const {id} = req.params;
+
+  
+
   try {
+    const notiDocs = await Notification.findById(id);
+
+    if (req.userId.toString() !== notiDocs.seller.toString()) {
+      throw new Error("Authorization Failed.");
+    }
+
     await Notification.findByIdAndDelete(id);
 
     return res.status(200).json({
@@ -87,7 +100,6 @@ exports.deleteNoti = async(req, res) => {
 }
 
 exports.deleteAllNoti= async (req, res) => {
-  const {id} = req.params;
     try {
       await Notification.deleteMany({owner_id : req.userId});
 

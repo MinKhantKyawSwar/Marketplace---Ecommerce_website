@@ -29,8 +29,8 @@ const Nav = () => {
       </Link>
       <div className=" flex items-center gap-3">
         <Link to={"/about"}>About</Link>
-        <Link to={"/about"}>Contact</Link>
-        <Link to={"/about"}>Q&A</Link>
+        <Link to={"/contact"}>Contact</Link>
+        <Link to={"/qanda"}>Q&A</Link>
       </div>
       {user ? (
         <div className="flex items-center gap-2">
