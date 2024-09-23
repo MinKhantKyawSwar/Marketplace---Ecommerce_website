@@ -33,7 +33,7 @@ const Dashboard = ({products, users, totalProducts, pendingProducts, setActiveTa
             <Card title={"Products"} count = {totalProducts} icon={ShoppingCartIcon} note={"items"}/> 
         </div>
         <div onClick={()=>setActiveTabKey("2")} className="w-full"  >
-            <Card title={"Pending Products"} count = {pendingProducts} icon={ShoppingCartIcon} note={"pending"}/>
+            <Card title={"Pendin Items"} count = {pendingProducts} icon={ShoppingCartIcon} note={"pending"}/>
         </div>
     </div>
    <AreaCustomChart products={products}/>
